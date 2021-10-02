@@ -1,0 +1,46 @@
+import com.kanzy.buildsrc.Libs
+
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+    id "kotlin-parcelize"
+    id "org.jetbrains.kotlin.kapt"
+    id "dagger.hilt.android.plugin"
+}
+
+apply from: "$rootDir/commons.gradle"
+
+dependencies {
+
+    implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.appcompat)
+    implementation(Libs.AndroidX.material)
+    testImplementation(Libs.AndroidX.junit)
+    androidTestImplementation(Libs.AndroidX.junitExt)
+    androidTestImplementation(Libs.AndroidX.espressoCore)
+    testImplementation(Libs.Coroutine.test)
+    testImplementation(Libs.robolectric)
+
+    implementation(Libs.Coroutine.android)
+    implementation(Libs.Coroutine.core)
+
+    implementation(Libs.AndroidX.Room.ktx)
+    kapt(Libs.AndroidX.Room.compiler)
+
+    implementation(Libs.Moshi.kotlin)
+    implementation(Libs.Moshi.kotlinCodegen)
+    implementation(Libs.Moshi.lazy)
+
+    implementation(Libs.Retrofit2.moshi)
+    implementation(Libs.Retrofit2.retrofit)
+    implementation(Libs.Okhttp3.okhttp)
+    implementation(Libs.Okhttp3.logging)
+    implementation(Libs.conscrypt)
+
+    debugImplementation(Libs.Chucker.debug)
+    releaseImplementation(Libs.Chucker.release)
+
+    implementation(Libs.Hilt.android)
+    kapt(Libs.Hilt.compiler)
+
+}
