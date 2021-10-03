@@ -81,4 +81,13 @@ object Libs {
         const val compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
     }
 
+    object Firebase {
+        const val analytic = "com.google.firebase:firebase-analytics-ktx:${Versions.fbAnalytic}"
+        const val crashlytics =
+            "com.google.firebase:firebase-crashlytics-ktx:${Versions.fbCrashlytics}"
+        const val messaging = "com.google.firebase:firebase-messaging-ktx:${Versions.fbMessaging}"
+        const val config = "com.google.firebase:firebase-config-ktx:${Versions.fbConfig}"
+        const val database = "com.google.firebase:firebase-database-ktx:${Versions.fbDatabase}"
+    }
+
 }

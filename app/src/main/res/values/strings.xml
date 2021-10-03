@@ -7,6 +7,7 @@
     <string name="search_toolbar_title">KanzyMusic</string>
     <string name="hint_search">Sanatçı, şarkı vb. ara</string>
     <string name="songs">Şarkılar</string>
+    <string name="popular_songs">Popüler şarkılar</string>
 
 
 </resources>

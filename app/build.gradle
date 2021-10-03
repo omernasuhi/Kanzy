@@ -130,6 +130,9 @@ dependencies {
 
     implementation(Libs.exoplayer)
 
+    implementation(Libs.Firebase.analytic)
+    implementation(Libs.Firebase.database)
+
     testImplementation(Libs.AndroidX.junit)
     testImplementation(Libs.Coroutine.test)
     testImplementation(Libs.robolectric)

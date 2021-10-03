@@ -1,6 +1,7 @@
 package com.kanzy.domain.di
 
 import com.kanzy.data.repository.music.MusicRepository
+import com.kanzy.domain.music.GetPopularMusics
 import com.kanzy.domain.music.SearchMusic
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,12 @@ object DomainModule {
     @ViewModelScoped
     fun provideSearchMusic(repository: MusicRepository): SearchMusic {
         return SearchMusic(repository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetPopularMusics(repository: MusicRepository): GetPopularMusics {
+        return GetPopularMusics(repository)
     }
 
 }

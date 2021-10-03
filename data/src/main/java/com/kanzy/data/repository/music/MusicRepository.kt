@@ -17,4 +17,6 @@ class MusicRepository @Inject constructor(
 
     suspend fun getPlayListMusic(playlistId: String) = musicService.getPlayListMusic(playlistId)
 
+    suspend fun getPopularMusics() = musicService.getPopularMusics()
+
 }

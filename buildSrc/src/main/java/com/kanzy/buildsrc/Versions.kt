@@ -31,6 +31,12 @@ object Versions {
     const val exoplayer = "2.15.1"
     const val hilt = "2.38.1"
 
+    const val fbAnalytic = "19.0.1"
+    const val fbCrashlytics = "18.1.0"
+    const val fbMessaging = "22.0.0"
+    const val fbConfig = "21.0.0"
+    const val fbDatabase = "20.0.2"
+
     const val junit = "4.13.2"
     const val junitExt = "1.1.3"
     const val espressoCore = "3.4.0"

@@ -30,6 +30,7 @@ class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewMo
     override fun onViewReady(bundle: Bundle?) {
         binding.etSearch.onSearchQueryRightIconChanged()
         initAdapter()
+        viewModel.getPopularMusics()
     }
 
     private fun initAdapter() {
