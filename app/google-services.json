@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "338422964865",
+    "project_id": "kanzy-music",
+    "storage_bucket": "kanzy-music.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338422964865:android:77232930e0b1317e2ea380",
+        "android_client_info": {
+          "package_name": "com.kanzy.music"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338422964865-trfm5bv8pmgs3tmgsiph1ggq9u6a2e0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kanzy.music",
+            "certificate_hash": "88adda0df665c8aad7c265c5474e742c956862a5"
+          }
+        },
+        {
+          "client_id": "338422964865-d6145f1vld3oegh5o495uon4aop4ckih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjD8gB263q6wcOksMIZP5CYq2kvLKx3bs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338422964865-d6145f1vld3oegh5o495uon4aop4ckih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

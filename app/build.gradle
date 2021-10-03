@@ -1,4 +1,5 @@
 import com.kanzy.buildsrc.Libs
+import com.kanzy.buildsrc.Configs
 
 plugins {
     id 'com.android.application'
@@ -7,20 +8,22 @@ plugins {
     id "org.jetbrains.kotlin.kapt"
     id "com.github.ben-manes.versions" version "0.38.0"
     id "dagger.hilt.android.plugin"
+    id "com.google.gms.google-services"
 }
 
 android {
-    compileSdk 31
+    compileSdk Configs.compileSdkVersion
+    buildToolsVersion Configs.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.kanzy.music"
-        minSdk 23
-        targetSdk 31
-        versionCode 1
-        versionName "1.0.0"
+        applicationId Configs.applicationId
+        minSdk Configs.minSdkVersion
+        targetSdk Configs.targetSdkVersion
+        versionCode Configs.versionCode
+        versionName Configs.versionName
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner Configs.testInstrumentationRunner
     }
 
     buildTypes {
@@ -73,6 +76,7 @@ android {
         exclude("META-INF/ASL2.0")
         exclude("META-INF/*.kotlin_module")
     }
+
 }
 
 dependencies {
@@ -91,7 +95,6 @@ dependencies {
     implementation(Libs.Coroutine.core)
 
     implementation(Libs.AndroidX.Room.ktx)
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt(Libs.AndroidX.Room.compiler)
 
     implementation(Libs.Moshi.kotlin)

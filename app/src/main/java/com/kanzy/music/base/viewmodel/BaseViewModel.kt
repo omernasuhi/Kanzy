@@ -3,8 +3,11 @@ package com.kanzy.music.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kanzy.data.remote.DataState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 // todo: sonradan düzenleme yapılacak.
 open class BaseViewModel: ViewModel() {
@@ -26,6 +29,10 @@ open class BaseViewModel: ViewModel() {
     open fun passError(throwable: Throwable, showSystemError: Boolean = true) {
         if (showSystemError)
             _error.value = throwable
+    }
+
+    protected fun launchOn(block: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch { block() }
     }
 
     protected suspend fun <T> call(

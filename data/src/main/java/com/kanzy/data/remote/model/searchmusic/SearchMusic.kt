@@ -12,11 +12,5 @@ data class SearchMusic(
     @Json(name = "videoId")
     var videoId: String? = null,
     @Json(name = "youtubeLink")
-    var youtubeLink: String? = null,
-
-    @Transient
-    var isDownloading: Boolean = false,
-
-    @Transient
-    var isFavor: Boolean = false
+    var youtubeLink: String? = null
 )

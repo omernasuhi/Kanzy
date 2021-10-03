@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 open class BaseResponse<T>(
 
     @Json(name = "errors")
-    var errors: List<String> = emptyList(),
+    var errors: List<String>? = emptyList(),
 
     @Json(name = "message")
     var message: String? = null,
