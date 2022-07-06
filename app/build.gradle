@@ -58,6 +58,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     // Allow references to generated code
@@ -138,5 +139,8 @@ dependencies {
     testImplementation(Libs.robolectric)
     androidTestImplementation(Libs.AndroidX.junitExt)
     androidTestImplementation(Libs.AndroidX.espressoCore)
+
+
+    implementation files("libs/YouTubeAndroidPlayerApi.jar")
 
 }

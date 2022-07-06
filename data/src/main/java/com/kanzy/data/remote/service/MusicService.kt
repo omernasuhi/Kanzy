@@ -4,9 +4,11 @@ import com.kanzy.data.remote.model.musiclink.MusicLinkResponse
 import com.kanzy.data.remote.model.playlistmusic.PlayListMusicResponse
 import com.kanzy.data.remote.model.searchmusic.SearchMusic
 import com.kanzy.data.remote.model.searchmusic.SearchMusicResponse
+import okhttp3.ResponseBody
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
-import retrofit2.http.Url
+
 
 interface MusicService {
 
@@ -27,13 +29,20 @@ interface MusicService {
         @Query("playlistId") playlistId: String
     ): PlayListMusicResponse
 
-    @GET(POPULAR_MUSIC)
-    suspend fun getPopularMusics(): List<SearchMusic>
+    @GET("http://10.0.2.2:3000/search/{keyword}")
+    suspend fun getPopularMusics(
+        @Path("keyword") keyword:String
+    ): List<SearchMusic>
+
+
+    @GET("http://10.0.2.2:3000/playMp3/{videoId}")
+    suspend fun getPlayMusic(
+        @Path("videoId") videoId:String
+    ): String
 
     companion object {
         const val SEARCH_MUSIC = "searchMusic"
         const val MUSIC_LINK = "musicLink"
         const val PLAY_LIST_MUSIC = "playListMusicItem"
-        const val POPULAR_MUSIC = "https://kanzy-music-default-rtdb.firebaseio.com/popular.json"
     }
 }

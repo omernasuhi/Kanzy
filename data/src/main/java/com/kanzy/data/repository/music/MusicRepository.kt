@@ -13,10 +13,12 @@ class MusicRepository @Inject constructor(
         apiKey: String? = null
     ) = musicService.searchMusic(keyword, pageToken, apiKey)
 
-    suspend fun getMusicLink(videoId: String) = musicService.getMusicLink(videoId)
+    suspend fun getMusicLink(videoUrl: String) = musicService.getMusicLink(videoUrl)
 
     suspend fun getPlayListMusic(playlistId: String) = musicService.getPlayListMusic(playlistId)
 
-    suspend fun getPopularMusics() = musicService.getPopularMusics()
+    suspend fun getPopularMusics( keyword: String) = musicService.getPopularMusics(keyword)
+
+    suspend fun getPlayMusic( videoId: String) = musicService.getPlayMusic(videoId)
 
 }

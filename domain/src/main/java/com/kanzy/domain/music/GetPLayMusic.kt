@@ -10,18 +10,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetPopularMusics @Inject constructor(
+class GetPLayMusic @Inject constructor(
     private val repository: MusicRepository
-) : BaseStateUseCase<GetPopularMusics.Param, List<SearchMusicDto>>() {
+) : BaseStateUseCase<GetPLayMusic.Param, String>() {
 
     data class Param(
-        var keyword: String
+        var videoId: String
         )
 
 
-    override fun execute(params: Param): Flow<DataState<List<SearchMusicDto>>> {
+    override fun execute(params: Param): Flow<DataState<String>> {
         return flow {
-            emit(apiCall { repository.getPopularMusics(params.keyword).toSearchMusicDtoList() })
+            emit(apiCall { repository.getPlayMusic(params.videoId) })
         }
 
     }

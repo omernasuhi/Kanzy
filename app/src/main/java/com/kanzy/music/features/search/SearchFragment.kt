@@ -1,16 +1,30 @@
 package com.kanzy.music.features.search
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.inomera.sm.ui.foodfilterrestaurants.adapter.SearchAdapter
+import com.kanzy.domain.dto.SearchMusicDto
+import com.kanzy.music.R
 import com.kanzy.music.base.viewmodel.BaseViewModelFragment
 import com.kanzy.music.databinding.FragmentSearchBinding
 import com.kanzy.music.extension.hideKeyboard
 import com.kanzy.music.extension.observe
 import com.kanzy.music.extension.onSubmit
+import com.kanzy.music.features.playVideo.PlayVideoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewModel>() {
+class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewModel>(),
+    SearchAdapter.SearchItemClickListener {
 
     companion object {
         @JvmStatic
@@ -19,8 +33,8 @@ class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewMo
         }
     }
 
-    private val adapter by lazy { SearchAdapter() }
 
+    lateinit var searchAdapter: SearchAdapter
     override val viewModel: SearchViewModel by viewModels()
 
     override fun createBinding(): FragmentSearchBinding {
@@ -29,13 +43,21 @@ class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewMo
 
     override fun onViewReady(bundle: Bundle?) {
         binding.etSearch.onSearchQueryRightIconChanged()
-        initAdapter()
-        viewModel.getPopularMusics()
+        viewModel.getPopularMusics("The Weeknd")
+
     }
 
-    private fun initAdapter() {
-        binding.rvMusics.setHasFixedSize(true)
-        binding.rvMusics.adapter = adapter
+    private fun initAdapter(
+        searchResultList: List<SearchMusicDto>,
+    ) {
+        searchAdapter = SearchAdapter(
+            searchResultList, this
+        )
+        binding.rvMusics.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = searchAdapter
+        }
     }
 
     override fun onViewListener() {
@@ -45,7 +67,13 @@ class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewMo
             val textSearch = binding.etSearch.text.toString().trim()
             binding.etSearch.hideKeyboard()
             if (textSearch.isNotEmpty()) {
-                viewModel.searchMusicList(textSearch)
+                viewModel.getPopularMusics(textSearch)
+
+//                activity?.let {
+//                    val intent = Intent(it, PlayVideoActivity::class.java)
+//                    it.startActivity(intent)
+//                }
+
             }
         }
 
@@ -54,8 +82,39 @@ class SearchFragment : BaseViewModelFragment<FragmentSearchBinding, SearchViewMo
     override fun onObserveState() {
         super.onObserveState()
         observe(viewModel.searchListLiveData) {
-            adapter.items = it
+            initAdapter(it)
         }
+    }
+
+    override fun musicListItemClicked(item: SearchMusicDto) {
+        showBottomDialog(item)
+       // item.videoId?.let { viewModel.getPLayMusic(it) }
+    }
+
+    private fun showBottomDialog(item: SearchMusicDto) {
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        val view = layoutInflater.inflate(R.layout.dialog_bottom, null)
+        val imageThumbnail = view.findViewById<ImageView>(R.id.imageViewThumbnail)
+        val textViewTitle = view.findViewById<TextView>(R.id.textViewTitle)
+        val btnClose = view.findViewById<LinearLayout>(R.id.linearLayoutClose)
+        val playVideo = view.findViewById<LinearLayout>(R.id.linearLayoutPlayVideo)
+
+        playVideo.setOnClickListener {
+            activity?.let {
+                val intent = Intent(it, PlayVideoActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
+
+        imageThumbnail.load(item.coverUrl)
+        textViewTitle.text = item.title
+
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.setContentView(view)
+        dialog.show()
     }
 
 }
