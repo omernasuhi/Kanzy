@@ -29,13 +29,21 @@ interface MusicService {
         @Query("playlistId") playlistId: String
     ): PlayListMusicResponse
 
-    @GET("http://10.0.2.2:3000/search/{keyword}")
+//    @GET("http://10.0.2.2:4000/search/{keyword}")
+//    suspend fun getPopularMusics(
+//        @Path("keyword") keyword:String
+//    ): List<SearchMusic>
+
+
+
+    @GET("https://shielded-fortress-12576.herokuapp.com/api/search")
     suspend fun getPopularMusics(
-        @Path("keyword") keyword:String
+        @Query("q") keyword:String
     ): List<SearchMusic>
 
 
-    @GET("http://10.0.2.2:3000/playMp3/{videoId}")
+
+    @GET("http://10.0.2.2:4000/playMp3/{videoId}")
     suspend fun getPlayMusic(
         @Path("videoId") videoId:String
     ): String

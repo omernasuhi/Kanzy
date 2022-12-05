@@ -31,7 +31,7 @@ class SearchAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bindView(item: SearchMusicDto) {
             binding.tvSongName.text = item.title
-            binding.ivCover.load(item.coverUrl)
+            binding.ivCover.load(item.thumbnail)
             binding.root.setOnClickListener {
                 onSearchItemClickListener.musicListItemClicked(item)
             }

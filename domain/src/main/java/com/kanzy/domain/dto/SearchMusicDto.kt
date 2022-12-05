@@ -9,11 +9,12 @@ data class SearchMusicDto(
     var title: String? = null,
     var coverUrl: String? = null,
     var videoId: String? = null,
-    var youtubeLink: String? = null
+    var youtubeLink: String? = null,
+    var thumbnail:String? = null
 ) : Parcelable
 
 fun SearchMusic.toSearchMusicDto() = SearchMusicDto(
-    title, coverUrl, videoId, youtubeLink
+    title, coverUrl, videoId, youtubeLink, thumbnail
 )
 
 fun List<SearchMusic>.toSearchMusicDtoList() = map { it.toSearchMusicDto() }

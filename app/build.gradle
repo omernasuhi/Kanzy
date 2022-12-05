@@ -98,6 +98,7 @@ dependencies {
     implementation(Libs.AndroidX.Room.ktx)
     kapt(Libs.AndroidX.Room.compiler)
 
+
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.kotlinCodegen)
     implementation(Libs.Moshi.lazy)

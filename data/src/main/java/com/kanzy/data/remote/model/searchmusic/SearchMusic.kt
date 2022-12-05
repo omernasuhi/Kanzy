@@ -12,5 +12,7 @@ data class SearchMusic(
     @Json(name = "videoId")
     var videoId: String? = null,
     @Json(name = "youtubeLink")
-    var youtubeLink: String? = null
+    var youtubeLink: String? = null,
+    @Json(name = "thumbnail")
+    var thumbnail: String? = null
 )
